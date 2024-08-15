@@ -1,0 +1,209 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a;
+    cout<<"Just enter the serial number of the thing you want."<<endl<<endl;
+    cout<<"1. Basic calculative functions"<<endl<<"2. Trigonometric Functions"<<endl<<
+          "3. Logarithmic function"<<endl<<"4. Squart Root Function"<<endl<<"5. Solve quadratic equation"<<endl;
+    cin>>a;
+    switch(a)
+    {
+        case 1:
+        {
+        int b;
+        cout<<"Choose the operation you need:"<<endl<<
+              "1.Addition 2.Subraction 3.Multiplication 4.Division "<<endl;
+        cin>>b;
+               switch(b)
+               {
+                   double p,q;
+                   case 1: cout<<"Enter the numbers which are to be added:"<<endl;
+                           cin>>p>>q;
+                           cout<<"The sum is "<<p+q;
+                           break;
+                   case 2: cout<<"Enter p,q respectively to get p-q :"<<endl;
+                           cin>>p>>q;
+                           cout<<"The difference is "<<p-q;
+                           break;
+                   case 3: cout<<"Enter the numbers whose product is required:"<<endl;
+                           cin>>p>>q;
+                           cout<<"The product is "<<p*q;
+                           break;
+                   case 4: cout<<"Enter p,q respectively to get p/q :"<<endl;
+                           cin>>p>>q;
+                           cout<<"The quotient is "<<p/q;
+                           break;
+                   default: cout<<"Please enter from the options available.";       
+               }
+            }   
+        break;
+        case 2:
+        {
+        int c,d; double Ang;
+        cout<<"Choose the trigonometric function you want to use :"<<endl<<
+              "1.Sin 2.Cos 3.Tan 4.Cot 5.Cosec 6.Sec"<<endl;
+        cin>>c;
+        // take the input of the angle
+        cout<<"Enter the unit in which you want to give input of the angle :"<<endl<<"1.Degree 2.Radian"<<endl;
+        cin>>d;
+        if(d!=1 && d!=2)
+        { cout<<"Please press 1 for degree and 2 for radian."; break; }
+        cout<<"Enter the angle in the selected unit :";
+        cin>>Ang;
+        if(d==1)
+        {
+           Ang= (3.1415926535897/180)*Ang;
+        }
+               //for converting all the angles to the range of 0 to 2pi
+               if(Ang>0)
+               {    while(Ang>=6.283184) {  Ang-=6.2831853071795; }    }
+               if(Ang<0)
+               {    while(Ang<0)         {  Ang+=6.2831853071795; }    } 
+               double m=0.00,n=0.00; 
+               //calculating sin and storing it in m
+               for(int i=1 ; i<=10 ; i++)
+               {
+                   long int facto=1; double powerOfAngle=1.00 , x;
+                   for(int j=1 ; j<=(2*i-1) ; j++)
+                   {
+                      facto=facto*j;
+                      powerOfAngle=powerOfAngle*Ang;
+                   } 
+                   x=powerOfAngle/facto;
+                   if((i%2) == 1)  { m=m+x; }
+                   else            { m=m-x; }
+                }
+                //calculating cosine and storing it in n
+                for(int i=1 ; i<10 ; i++)    
+                {
+                    long int facto=1; double powerOfAngle=1.00 , x;
+                    for(int j=1 ; j<=(2*i) ; j++)
+                   {
+                      facto=facto*j;
+                      powerOfAngle=powerOfAngle*Ang;
+                      x=powerOfAngle/facto;
+                   } 
+                   if((i%2) == 1)  { n=n-x; }
+                   else            { n=n+x; }
+                    
+                }  n=1.00+n;
+                switch(c)
+               {
+                   case 1: cout<<"The value of sine of this angle is "<<m; break;
+                   case 2: cout<<"The value of cosine of this angle is "<<n; break;
+                   case 3: cout<<"The value of tangent of this angle is "<<m/n; break;
+                   case 4: cout<<"The value of cotangent of this angle is "<<n/m; break;
+                   case 5: cout<<"The value of cosecant of this angle is "<<1.0/m; break;
+                   case 6: cout<<"The value of secant of this angle is "<<1.0/n; break;
+                   default: cout<<"Please enter from the options available.";  
+               } 
+            }   
+        break;
+        case 3:
+        {
+        double h;
+        cout<<"Enter the no. whose logarithm is requied :";
+        cin>>h;
+        if(h<=0)
+        { cout<<"Logarithm of a non-positive no. is not defined."; }
+        else if(h==1)
+        {
+        cout<<"Required logarithm value is 0.";
+        }
+        else if(h>1)
+        { 
+        for(double y=.0001 ;  ; y+=0.0001)
+        { 
+        long int facto=1 ; double power=1.000 , g=1.000;;
+        for(int i=1 ; i<=20; i++ )  
+        {
+        facto=facto*i;
+        power=power*y;
+        g+=(power/facto);
+        }
+        if(g>=h) { cout<<"Required logarithm value is "<<y; break; }
+        }
+        }
+         else
+         {
+        for(double y=-0.0001 ;  ; y-=0.0001)
+        { 
+          long int facto=1 ; double power=1.000 , g=1.000;;
+          for(int i=1 ; i<20; i++ )  
+          {
+           facto=facto*i;
+           power=power*y;
+           g+=(power/facto);
+          }
+         if(g<=h) { cout<<"Required logarithm value is "<<y; break; }
+        } 
+        }
+        }
+    break;
+    case 4:
+        {
+        double p,y=0;   
+        cout<<"Enter the number whose square root is to be finded :";
+        cin>>p;    
+        if(p<0)
+        {
+            cout<<"Square root of negative number is not defined.";
+        }
+        else if(p==0)
+        {
+          cout<<"The square root of the given number is 0.";  
+        }
+        else 
+        {
+     
+        for(double i=0.000001 ; (i*i)<=p ; i+=0.000001)
+        {
+          y+=0.000001;  
+        }
+        cout<<"The square root of the given number is : "<<y;
+        }
+        }
+    break;
+    case 5:
+    {
+    float a,b,c;
+    cout<<"A quadratic equation is form 'ax^2 + bx +c = 0'."<<endl<<
+          "Please enter a,b and c respectively with sign as per your choice."<<endl;
+    cin>>a>>b>>c;
+    if(a==0)
+    {
+        cout<<"For a quadratic equation,coefficient of x^2(a) cannot be zero."<<endl;
+        cout<<"It becomes a linear equation whose solution is given by :"<<(-(c/b));
+    }
+    else
+    {
+        double dis=(b*b) - (4*a*c);
+        if(dis<0)
+        {
+            cout<<"The equation does not have real roots."<<endl;
+        }
+        else if(dis==0)
+        {
+            cout<<"The equation has two real & equal roots given by : x= "<<(-(b/(2*a)));
+        }
+        else
+        {
+            double x1 , x2 , x;
+            for(double i=0.000001 ; (i*i)<=dis ; i+=0.000001)
+            {
+             x+=0.000001;
+            }
+            x1= (-b + x)/(2*a);
+            x2= (-b - x)/(2*a);
+            cout<<"The two real roots are : x= "<<x1<<","<<x2;
+            
+        }
+    }
+    }
+    break; 
+    default: cout<<"Please enter from the options available.";  
+    return 0;
+   }
+}
